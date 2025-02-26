@@ -88,8 +88,8 @@ func validateBirdNETSettings(settings *BirdNETConfig) error {
 	}
 
 	// Check if overlap is within valid range
-	if settings.Overlap < 0 || settings.Overlap > 2.999 {
-		errs = append(errs, "BirdNET overlap value must be between 0 and 2.999 seconds")
+	if settings.Overlap < 0 || settings.Overlap > 2.999979167 {
+		errs = append(errs, "BirdNET overlap value must be between 0 and 2.999979167 seconds")
 	}
 
 	// Check if longitude is within valid range
