@@ -1,7 +1,7 @@
 {
 	"name": "Go Build Environment",
 	"dockerFile": "../Dockerfile",
-	"appPort": [8080],
+	"appPort": [8081],
 	"build": {
 		"context": "..",
 		"target": "buildenv"
@@ -14,7 +14,9 @@
 	"containerUser": "dev-user",
 	"updateRemoteUserUID": true,
 	"postCreateCommand": ".devcontainer/postCreateCommand.sh",
-	"postAttachCommand": ".devcontainer/start_dev_server.sh",
+	"mounts": [
+		"source=${localEnv:HOME}/birdnet-go-data,target=/home/dev-user/birdnet-go-data,type=bind"
+	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -24,8 +26,8 @@
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/go:1": {
-		  "version": "1.23.2"
+			"version": "1.23.2"
 		},
 		"ghcr.io/devcontainers/features/github-cli:1": {}
-	  }
+	}
 }
