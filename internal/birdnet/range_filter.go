@@ -51,17 +51,6 @@ func BuildRangeFilter(bn *BirdNET) error {
 			date = time.Now().Truncate(24 * time.Hour)
 		}
 	}
-	fmt.Print("Date: ", date)
-
-	//today := time.Now().Truncate(24 * time.Hour)
-	//fmt.Print("--------------------------range")
-
-	//fmt.Print(conf.Setting().BirdNET.RangeFilter.Date)
-
-	//date, err := time.Parse("2006-01-02", dateStr)     // Attempt to parse the date string with the expected layout.
-	//if err != nil {
-	//	fmt.Printf("Invalid date format: %v\n", err)
-	//}
 
 	// Update location based species list
 	speciesScores, err := bn.GetProbableSpecies(date, 0.0)

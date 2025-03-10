@@ -145,7 +145,7 @@ func (bn *BirdNET) initializeModel() error {
 		initMessage = fmt.Sprintf("%s model initialized, using configured %v threads of available %v CPUs",
 			modelVersion, threads, runtime.NumCPU())
 	}
-	fmt.Println(initMessage)
+
 	return nil
 }
 
