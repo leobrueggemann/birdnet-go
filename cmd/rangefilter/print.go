@@ -24,6 +24,7 @@ func PrintCommand(settings *conf.Settings) *cobra.Command {
 			dateStr, _ := cmd.Flags().GetString("date")
 			weekNum, _ := cmd.Flags().GetInt("week")
 			week := float32(weekNum)
+			fmt.Print("Week", week)
 
 			if dateStr == "" && weekNum == 0 {
 				dateStr = GetCurrentDateFormatted()

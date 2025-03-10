@@ -34,10 +34,37 @@ func (a ByScore) Less(i, j int) bool { return a[i].Score > a[j].Score } // For d
 // BuildRangeFilter updates the range filter with current probable species
 func BuildRangeFilter(bn *BirdNET) error {
 	// Get date for Range Filter week calculation
-	today := time.Now().Truncate(24 * time.Hour)
+
+	dateStr := conf.Setting().BirdNET.Date // in format YYYY-mm-dd
+	var date time.Time
+
+	if dateStr == "" {
+		// Use today's date (truncated to midnight)
+		date = time.Now().Truncate(24 * time.Hour)
+	} else {
+		// Parse the provided date string
+		var err error
+		date, err = time.Parse("2006-01-02", dateStr)
+		if err != nil {
+			fmt.Printf("Error parsing date: %v\n", err)
+			// Optionally, handle the error or fallback to today's date
+			date = time.Now().Truncate(24 * time.Hour)
+		}
+	}
+	fmt.Print("Date: ", date)
+
+	//today := time.Now().Truncate(24 * time.Hour)
+	//fmt.Print("--------------------------range")
+
+	//fmt.Print(conf.Setting().BirdNET.RangeFilter.Date)
+
+	//date, err := time.Parse("2006-01-02", dateStr)     // Attempt to parse the date string with the expected layout.
+	//if err != nil {
+	//	fmt.Printf("Invalid date format: %v\n", err)
+	//}
 
 	// Update location based species list
-	speciesScores, err := bn.GetProbableSpecies(today, 0.0)
+	speciesScores, err := bn.GetProbableSpecies(date, 0.0)
 	if err != nil {
 		return err
 	}

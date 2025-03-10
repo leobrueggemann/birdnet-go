@@ -64,7 +64,7 @@ realtime:
       recent: true
  
   dynamicthreshold:
-    enabled: true         # true to enable dynamic confidence threshold
+    enabled: false         # true to enable dynamic confidence threshold
     trigger: 0.90         # dynamic threshold is activated on detections at this confidence level
     min: 0.20             # dynamic threshold will not go lower than this
     validhours: 24        # number of hours to consider for dynamic confidence
@@ -104,7 +104,7 @@ realtime:
     password: secret      # MQTT password
 
   privacyfilter:          # Privacy filter prevents audio clip saving if human voice 
-    enabled: true         # is detected durin audio capture
+    enabled: false         # is detected durin audio capture
     confidence: 0.05      # threshold for human voice detection
 
   dogbarkfilter:
@@ -117,7 +117,7 @@ realtime:
     listen: "0.0.0.0:8090" # IP address and port to listen on
 
 webserver:
-  enabled: true           # true to enable web server
+  enabled: false           # true to enable web server
   port: 8080              # port for web server
   log:
     enabled: false        # true to enable log file
@@ -160,11 +160,11 @@ output:
   file:
     enabled: true         # true to enable file output for file and directory analysis
     path: output/         # path to output directory
-    type: table           # ouput format, Raven table or csv
+    type: csv           # ouput format, Raven table or csv
   # Only one database is supported at a time
   # if both are enabled, SQLite will be used.
   sqlite:
-    enabled: true         # true to enable sqlite output
+    enabled: false         # true to enable sqlite output
     path: birdnet.db      # path to sqlite database
   mysql:
     enabled: false        # true to enable mysql output

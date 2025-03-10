@@ -15,3 +15,7 @@ birdnet.db
 birdnet.txt
 custom_confidence_list.txt
 node_modules
+output/*
+package-lock.json
+package.json
+wavtest.wav.txt

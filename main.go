@@ -74,6 +74,7 @@ func mainWithExitCode() int {
 
 	// Execute the root command
 	rootCmd := cmd.RootCommand(settings)
+	fmt.Println(settings.Output.File.Type)
 	if err := rootCmd.Execute(); err != nil {
 		if errors.Is(err, analysis.ErrAnalysisCanceled) {
 			// Clean exit for user-initiated cancellation

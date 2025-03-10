@@ -47,8 +47,8 @@ func New(settings *conf.Settings, beginTime, endTime time.Time, species string, 
 		audioSource = source
 	}
 
-	// Round confidence to two decimal places
-	roundedConfidence := math.Round(confidence*100) / 100
+	// Round confidence to six decimal places
+	roundedConfidence := math.Round(confidence*1000000) / 1000000
 
 	// Return a new Note struct populated with the provided parameters as well as the current date and time.
 	return datastore.Note{
@@ -109,10 +109,9 @@ func WriteNotesTable(settings *conf.Settings, notes []datastore.Note, filename s
 		if notes[i].Confidence <= settings.BirdNET.Threshold {
 			continue // Skip the current iteration as the note doesn't meet the threshold
 		}
-
 		// Prepare the line for notes above the threshold, assuming note.BeginTime and note.EndTime are of type time.Time
-		line := fmt.Sprintf("%d\tSpectrogram 1\t1\t%s\t%s\t%s\t0\t15000\t%s\t%s\t%.4f\n",
-			i+1, notes[i].Source, notes[i].BeginTime.Format("15:04:05"), notes[i].EndTime.Format("15:04:05"),
+		line := fmt.Sprintf("%d\tSpectrogram 1\t1\t%s\t%s\t%s\t0\t15000\t%s\t%s\t%.6f\n",
+			i+1, notes[i].Source, notes[i].BeginTime.Format("2006-01-02 15:04:05.000"), notes[i].EndTime.Format("2006-01-02 15:04:05.000"),
 			notes[i].SpeciesCode, notes[i].CommonName, notes[i].Confidence)
 
 		// Attempt to write the note
@@ -172,9 +171,9 @@ func WriteNotesCsv(settings *conf.Settings, notes []datastore.Note, filename str
 			continue // Skip the current iteration as the note doesn't meet the threshold
 		}
 
-		line := fmt.Sprintf("%s,%s,%s,%s,%.4f\n",
-			notes[i].BeginTime.Format("2006-01-02 15:04:05"),
-			notes[i].EndTime.Format("2006-01-02 15:04:05"),
+		line := fmt.Sprintf("%s,%s,%s,%s,%.6f\n",
+			notes[i].BeginTime.Format("2006-01-02 15:04:05.000"),
+			notes[i].EndTime.Format("2006-01-02 15:04:05.000"),
 			notes[i].ScientificName, notes[i].CommonName, notes[i].Confidence)
 
 		if _, err = w.Write([]byte(line)); err != nil {

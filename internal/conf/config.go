@@ -205,6 +205,7 @@ type BirdNETConfig struct {
 	Overlap     float64             // birdnet analysis overlap between chunks
 	Longitude   float64             // longitude of recording location for prediction filtering
 	Latitude    float64             // latitude of recording location for prediction filtering
+	Date        string              // Date for the range filter process in ISO 8601 format (YYYY-MM-DD)
 	Threads     int                 // number of CPU threads to use for analysis
 	Locale      string              // language to use for labels
 	RangeFilter RangeFilterSettings // range filter settings

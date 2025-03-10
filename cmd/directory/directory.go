@@ -75,6 +75,7 @@ func setupFlags(cmd *cobra.Command, settings *conf.Settings) error {
 	cmd.Flags().BoolVarP(&settings.Input.Watch, "watch", "w", false, "Watch directory for new files")
 	cmd.Flags().StringVarP(&settings.Output.File.Path, "output", "o", viper.GetString("output.file.path"), "Path to output directory")
 	cmd.Flags().StringVar(&settings.Output.File.Type, "type", viper.GetString("output.file.type"), "Output type: table, csv")
+	cmd.Flags().StringVar(&settings.BirdNET.Date, "date", settings.BirdNET.Date, "Date for the range filter process in ISO 8601 format (YYYY-MM-DD)")
 
 	if err := viper.BindPFlags(cmd.Flags()); err != nil {
 		return fmt.Errorf("error binding flags: %w", err)

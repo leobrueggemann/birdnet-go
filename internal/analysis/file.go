@@ -496,6 +496,7 @@ func writeResults(settings *conf.Settings, notes []datastore.Note) error {
 			return fmt.Errorf("failed to write notes table: %w", err)
 		}
 	}
+	fmt.Println(settings.Output.File.Type)
 	// If OutputType is set to "csv", output as CSV format.
 	if settings.Output.File.Type == "csv" {
 		if err := observation.WriteNotesCsv(settings, notes, outputFile); err != nil {
